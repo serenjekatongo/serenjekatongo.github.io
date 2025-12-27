@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Services - Premise Car Hire & Tours</title>
+    <style>
+        /* Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        }
+        
+        body {
+            background-color: #FFFFFF;
+            color: #0A1E3A;
+            line-height: 1.6;
+        }
+        
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background-color: #0A1E3A;
+            color: #FFFFFF;
+            font-weight: 600;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            border: 2px solid #0A1E3A;
+            cursor: pointer;
+            font-size: 16px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .btn:hover {
+            background-color: transparent;
+            color: #0A1E3A;
+        }
+        
+        .btn-accent {
+            background-color: #13C658;
+            border-color: #13C658;
+            color: #FFFFFF;
+        }
+        
+        .btn-accent:hover {
+            background-color: transparent;
+            color: #13C658;
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: #FFFFFF;
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo img {
+            height: 50px;
+            width: auto;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 30px;
+        }
+        
+        nav ul li a {
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+        
+        nav ul li a.active {
+            color: #13C658;
+            font-weight: 600;
+        }
+        
+        nav ul li a:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background: #13C658;
+            bottom: -5px;
+            left: 0;
+            transition: width 0.3s ease;
+        }
+        
+        nav ul li a:hover:after,
+        nav ul li a.active:after {
+            width: 100%;
+        }
+        
+        /* Page Header */
+        .page-header {
+            background: linear-gradient(rgba(10, 30, 58, 0.9), rgba(10, 30, 58, 0.8)), url('https://via.placeholder.com/1920x1080') center/cover no-repeat;
+            color: #FFFFFF;
+            padding: 100px 0;
+            text-align: center;
+        }
+        
+        .page-header h1 {
+            font-size: 42px;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .breadcrumb {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            font-size: 14px;
+        }
+        
+        .breadcrumb li {
+            margin: 0 10px;
+            position: relative;
+        }
+        
+        .breadcrumb li:after {
+            content: '/';
+            position: absolute;
+            right: -15px;
+            color: rgba(255, 255, 255, 0.7);
+        }
+        
+        .breadcrumb li:last-child:after {
+            display: none;
+        }
+        
+        .breadcrumb a {
+            color: rgba(255, 255, 255, 0.7);
+            transition: color 0.3s ease;
+        }
+        
+        .breadcrumb a:hover {
+            color: #13C658;
+        }
+        
+        /* Main Services Section */
+        .services-main {
+            padding: 80px 0;
+        }
+        
+        .section-title {
+            font-size: 32px;
+            margin-bottom: 30px;
+            color: #0A1E3A;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title:after {
+            content: '';
+            position: absolute;
+            width: 50%;
+            height: 4px;
+            background: #13C658;
+            bottom: -10px;
+            left: 0;
+        }
+        
+        .services-intro {
+            max-width: 800px;
+            margin: 0 auto 50px;
+            text-align: center;
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+        
+        .service-card {
+            background-color: #FFFFFF;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            padding: 30px;
+            border-top: 4px solid #13C658;
+            text-align: center;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .service-icon {
+            font-size: 48px;
+            color: #13C658;
+            margin-bottom: 20px;
+        }
+        
+        .service-card h3 {
+            font-size: 22px;
+            margin-bottom: 15px;
+            color: #0A1E3A;
+        }
+        
+        /* Pricing Section */
+        .pricing {
+            padding: 60px 0;
+            background-color: #F8F9FA;
+        }
+        
+        .pricing-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 40px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            background-color: #FFFFFF;
+        }
+        
+        .pricing-table th, 
+        .pricing-table td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #F0F0F0;
+        }
+        
+        .pricing-table th {
+            background-color: #0A1E3A;
+            color: #FFFFFF;
+            font-weight: 500;
+        }
+        
+        .pricing-table tr:nth-child(even) {
+            background-color: #F8F9FA;
+        }
+        
+        .pricing-table tr:hover {
+            background-color: rgba(19, 198, 88, 0.1);
+        }
+        
+        /* Tours Section */
+        .tours {
+            padding: 80px 0;
+        }
+        
+        .tour-packages {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .tour-card {
+            background-color: #FFFFFF;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .tour-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        
+        .tour-info {
+            padding: 25px;
+        }
+        
+        .tour-info h3 {
+            font-size: 20px;
+            margin-bottom: 15px;
+            color: #0A1E3A;
+        }
+        
+        .tour-price {
+            font-size: 18px;
+            font-weight: bold;
+            color: #13C658;
+            margin-bottom: 15px;
+        }
+        
+        .tour-includes {
+            margin-bottom: 20px;
+        }
+        
+        .tour-includes h4 {
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+        
+        .tour-includes ul {
+            list-style-position: inside;
+            padding-left: 5px;
+        }
+        
+        .tour-includes li {
+            margin-bottom: 5px;
+            font-size: 14px;
+        }
+        
+        /* CTA Section */
+        .cta {
+            padding: 80px 0;
+            text-align: center;
+            background-color: #0A1E3A;
+            color: #FFFFFF;
+        }
+        
+        .cta h2 {
+            font-size: 32px;
+            margin-bottom: 20px;
+            color: #FFFFFF;
+        }
+        
+        .cta p {
+            max-width: 700px;
+            margin: 0 auto 30px;
+            font-size: 16px;
+            color: rgba(255, 255, 255, 0.9);
+        }
+        
+        /* Footer */
+        footer {
+            background-color: #0A1E3A;
+            color: #FFFFFF;
+            padding: 60px 0 20px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-column h3 {
+            font-size: 18px;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-column h3:after {
+            content: '';
+            position: absolute;
+            width: 40px;
+            height: 3px;
+            background: #13C658;
+            bottom: 0;
+            left: 0;
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 10px;
+            font-size: 14px;
+        }
+        
+        .footer-column ul li a {
+            transition: color 0.3s ease;
+        }
+        
+        .footer-column ul li a:hover {
+            color: #13C658;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            transition: all 0.3s ease;
+            color: white;
+        }
+        
+        .social-links a:hover {
+            background-color: #13C658;
+            transform: translateY(-3px);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 13px;
+        }
+        
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .page-header {
+                padding: 80px 0;
+            }
+            
+            .page-header h1 {
+                font-size: 36px;
+            }
+            
+            .section-title {
+                font-size: 28px;
+            }
+            
+            .header-container {
+                flex-direction: column;
+            }
+            
+            nav ul {
+                margin-top: 20px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            nav ul li {
+                margin: 5px 10px;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .page-header h1 {
+                font-size: 28px;
+            }
+            
+            .pricing-table {
+                display: block;
+                overflow-x: auto;
+            }
+            
+            .btn {
+                padding: 10px 20px;
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <img src="C:\Users\BACKSPACE\Desktop\premisecarhire\Saved Pictures\WhatsApp Image 2025-07-23 at 12.39.32_8366519f.jpg" alt="Premise Car Hire & Tours Logo">
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="home.html">Home</a></li>
+                    <li><a href="services.html" class="active">Services</a></li>
+                    <li><a href="fleet.html">Fleet</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1>Our Services</h1>
+            <ul class="breadcrumb">
+                <li><a href="index.html">Home</a></li>
+                <li>Services</li>
+            </ul>
+        </div>
+    </section>
+    
+    <!-- Main Services Section -->
+    <section class="services-main">
+        <div class="container">
+            <div class="services-intro">
+                <h2 class="section-title">Premium Mobility Solutions</h2>
+                <p>At Premise Car Hire & Tours, we specialize in three core services designed to meet all your transportation needs. Whether you need a rugged 4x4 for adventure, a customized tour package, or reliable transfers, we've got you covered.</p>
+            </div>
+            
+            <div class="services-grid">
+                <a href="4x4-hire.html" class="service-card">
+                    <div class="service-icon">🚙</div>
+                    <h3>4x4 Car Hire</h3>
+                    <p>Explore Zambia's diverse terrain with our rugged and reliable 4x4 vehicles, perfect for adventure seekers and off-road enthusiasts.</p>
+                </a>
+                
+                <a href="custom-tours.html" class="service-card">
+                    <div class="service-icon">🗺️</div>
+                    <h3>Customized Tour Packages</h3>
+                    <p>Tailored travel experiences designed specifically for your unique requirements and preferences throughout Zambia.</p>
+                </a>
+                
+                <a href="transfers.html" class="service-card">
+                    <div class="service-icon">✈️</div>
+                    <h3>Airport & Border Transfers</h3>
+                    <p>Punctual and comfortable transfers from airports or border crossings in premium vehicles with professional drivers.</p>
+                </a>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Pricing Section -->
+    <section class="pricing">
+        <div class="container">
+            <h2 class="section-title">Our Pricing</h2>
+            <p>Transparent and competitive pricing for all our services. All rates are in Zambian Kwacha (ZMW).</p>
+            
+            <table class="pricing-table">
+                <thead>
+                    <tr>
+                        <th>Service Type</th>
+                        <th>Coverage Area</th>
+                        <th>Rate (ZMW)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>4x4 Vehicle Hire (Daily)</td>
+                        <td>Within Copperbelt Province</td>
+                        <td>3,000</td>
+                    </tr>
+                    <tr>
+                        <td>4x4 Vehicle Hire (Daily)</td>
+                        <td>Outside Copperbelt Province</td>
+                        <td>3,500</td>
+                    </tr>
+                    <tr>
+                        <td>Airport/Border Transfer</td>
+                        <td>Includes fuel & driver</td>
+                        <td>2,500</td>
+                    </tr>
+                    <tr>
+                        <td>Customized Tour Packages</td>
+                        <td>Price varies by package</td>
+                        <td>From 3,000</td>
+                    </tr>
+                    
+                </tbody>
+            </table>
+        </div>
+    </section>
+    
+    <!-- Tours Section -->
+    <section class="tours">
+        <div class="container">
+            <h2 class="section-title">Featured Tour Packages</h2>
+            <p>Explore the Copperbelt region with our expertly curated tour packages. Each package includes vehicle, driver, and guide services.</p>
+            
+            <div class="tour-packages">
+                <div class="tour-card">
+                    <img src="C:\Users\BACKSPACE\Desktop\premisecarhire\Saved Pictures\chimfunshi-schimpansen-wildtierstation-fuetterung.webp" alt="Chimfunshi Wildlife Orphanage" class="tour-img">
+                    <div class="tour-info">
+                        <h3>Chimfunshi Wildlife Orphanage Tour</h3>
+                        <p class="tour-price">Starting at ZMW 3,000</p>
+                        <div class="tour-includes">
+                            <h4>Package Includes:</h4>
+                            <ul>
+                                <li>Full-day guided tour</li>
+                                <li>Comfortable transportation</li>
+                                <li>Knowledgeable guide</li>
+                                <li>All park fees included</li>
+                            </ul>
+                        </div>
+                        <a href="#" class="btn btn-accent">Book This Tour</a>
+                    </div>
+                </div>
+                
+                <div class="tour-card">
+                    <img src="C:\Users\BACKSPACE\Desktop\premisecarhire\Saved Pictures\607f0d_919942ed609c4cb8a35b64c396296373~mv2.avif" alt="Kitwe Dam & Sanctuary" class="tour-img">
+                    <div class="tour-info">
+                        <h3>Kitwe Dam & Sanctuary Excursion</h3>
+                        <p class="tour-price">Starting at ZMW 2,500</p>
+                        <div class="tour-includes">
+                            <h4>Package Includes:</h4>
+                            <ul>
+                                <li>Half-day guided excursion</li>
+                                <li>Luxury SUV transportation</li>
+                                <li>Professional guide</li>
+                                <li>Refreshments included</li>
+                            </ul>
+                        </div>
+                        <a href="#" class="btn btn-accent">Book This Tour</a>
+                    </div>
+                </div>
+                
+                <div class="tour-card">
+                    <img src="C:\Users\BACKSPACE\Desktop\premisecarhire\Saved Pictures\images.jpeg" alt="Chembe Bird Sanctuary" class="tour-img">
+                    <div class="tour-info">
+                        <h3>Chembe Bird Sanctuary (near Kitwe)</h3>
+                        <p class="tour-price">Starting at ZMW 2,800</p>
+                        <div class="tour-includes">
+                            <h4>Package Includes:</h4>
+                            <ul>
+                                <li>Full-day bird watching experience</li>
+                                <li>Comfortable 4x4 vehicle</li>
+                                <li>Expert ornithologist guide</li>
+                                <li>Binoculars provided</li>
+                            </ul>
+                        </div>
+                        <a href="#" class="btn btn-accent">Book This Tour</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- CTA Section -->
+    <section class="cta">
+        <div class="container">
+            <h2>Ready to Book Your Service?</h2>
+            <p>Contact us today to arrange your premium transportation or exciting tour package. Our team is available 24/7 to assist with your inquiries.</p>
+            <a href="contact.html" class="btn btn-accent">Contact Us Now</a>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Premise</h3>
+                    <p>Premise Car Hire & Tours offering luxury transportation and bespoke travel experiences.</p>
+                    <div class="social-links">
+                        <a href="#">f</a>
+                        <a href="#">ig</a>
+                        <a href="#">tiktok</a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="fleet.html">Fleet</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Contact Us</h3>
+                    <ul>
+                        <li>Plot 51 Mwaiseni New Road</li>
+                        <li>Kitwe, Zambia</li>
+                        <li>Phone: +260 762 007 565</li>
+                        <li>Email: premisecarhire@gmail.com</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 Premise Car Hire & Tours. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

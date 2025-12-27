@@ -1,0 +1,761 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Premise - Car Hire & Tours</title>
+    <style>
+        /* Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        }
+        
+        body {
+            background-color: #FFFFFF;
+            color: #0A1E3A;
+            line-height: 1.6;
+        }
+        
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background-color: #0A1E3A;
+            color: #FFFFFF;
+            font-weight: 600;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            border: 2px solid #0A1E3A;
+            cursor: pointer;
+            font-size: 16px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .btn:hover {
+            background-color: transparent;
+            color: #0A1E3A;
+        }
+        
+        .btn-accent {
+            background-color: #13C658;
+            border-color: #13C658;
+            color: #FFFFFF;
+        }
+        
+        .btn-accent:hover {
+            background-color: transparent;
+            color: #13C658;
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: #FFFFFF;
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo img {
+            height: 50px;
+            width: auto;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 30px;
+        }
+        
+        nav ul li a {
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+         nav ul li a.active {
+            color: #13C658;
+            font-weight: 600;
+        }
+        nav ul li a:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background: #13C658;
+            bottom: -5px;
+            left: 0;
+            transition: width 0.3s ease;
+        }
+        
+        nav ul li a:hover:after {
+            width: 100%;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(10, 30, 58, 0.9), rgba(10, 30, 58, 0.8)), url('https://via.placeholder.com/1920x1080') center/cover no-repeat;
+            color: #FFFFFF;
+            padding: 120px 0;
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: 42px;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .hero p {
+            font-size: 18px;
+            max-width: 700px;
+            margin: 0 auto 40px;
+            color: rgba(255, 255, 255, 0.9);
+        }
+        
+        .hero-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+        
+        .call-now {
+            margin-top: 25px;
+            color: white;
+            font-size: 18px;
+        }
+        
+        .call-now a {
+            color: #13C658;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .call-now a:hover {
+            color: white;
+            text-decoration: underline;
+        }
+        
+        /* About Section */
+        .about {
+            padding: 80px 0;
+        }
+        
+        .section-title {
+            font-size: 32px;
+            margin-bottom: 30px;
+            color: #0A1E3A;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title:after {
+            content: '';
+            position: absolute;
+            width: 50%;
+            height: 4px;
+            background: #13C658;
+            bottom: -10px;
+            left: 0;
+        }
+        
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+        }
+        
+        .about-text {
+            flex: 1;
+        }
+        
+        .about-text p {
+            margin-bottom: 20px;
+            font-size: 16px;
+        }
+        
+        .about-image {
+            flex: 1;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .about-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        /* Services Section */
+        .services {
+            padding: 80px 0;
+            background-color: #F8F9FA;
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+        
+        .service-card {
+            background-color: #FFFFFF;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-align: center;
+            padding: 30px;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .service-icon {
+            font-size: 48px;
+            color: #13C658;
+            margin-bottom: 20px;
+        }
+        
+        .service-card h3 {
+            font-size: 20px;
+            margin-bottom: 15px;
+            color: #0A1E3A;
+        }
+        
+        /* Cars Section */
+        .cars {
+            padding: 80px 0;
+        }
+        
+        .cars-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+        
+        .car-card {
+            background-color: #FFFFFF;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease;
+        }
+        
+        .car-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .car-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        
+        .car-info {
+            padding: 20px;
+        }
+        
+        .car-info h3 {
+            font-size: 20px;
+            margin-bottom: 10px;
+            color: #0A1E3A;
+        }
+        
+        .car-price {
+            font-size: 18px;
+            font-weight: bold;
+            color: #13C658;
+            margin-bottom: 15px;
+        }
+        
+        .car-features {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+        
+        .car-feature {
+            background-color: #F8F9FA;
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-size: 13px;
+        }
+        
+        /* Testimonials */
+        .testimonials {
+            padding: 80px 0;
+            background-color: #0A1E3A;
+            color: #FFFFFF;
+        }
+        
+        .testimonials .section-title {
+            color: #FFFFFF;
+        }
+        
+        .testimonials .section-title:after {
+            background: #13C658;
+        }
+        
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+        
+        .testimonial-card {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            padding: 25px;
+            transition: transform 0.3s ease;
+        }
+        
+        .testimonial-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 20px;
+            font-size: 15px;
+        }
+        
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+        }
+        
+        .author-avatar {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background-color: #13C658;
+            margin-right: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+        
+        /* CTA Section */
+        .cta {
+            padding: 80px 0;
+            text-align: center;
+            background-color: #F8F9FA;
+        }
+        
+        .cta h2 {
+            font-size: 32px;
+            margin-bottom: 20px;
+            color: #0A1E3A;
+        }
+        
+        .cta p {
+            max-width: 700px;
+            margin: 0 auto 30px;
+            font-size: 16px;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: #0A1E3A;
+            color: #FFFFFF;
+            padding: 60px 0 20px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-column h3 {
+            font-size: 18px;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-column h3:after {
+            content: '';
+            position: absolute;
+            width: 40px;
+            height: 3px;
+            background: #13C658;
+            bottom: 0;
+            left: 0;
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 10px;
+            font-size: 14px;
+        }
+        
+        .footer-column ul li a {
+            transition: color 0.3s ease;
+        }
+        
+        .footer-column ul li a:hover {
+            color: #13C658;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            transition: all 0.3s ease;
+            color: white;
+        }
+        
+        .social-links a:hover {
+            background-color: #13C658;
+            transform: translateY(-3px);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 13px;
+        }
+        
+        /* Mobile Responsiveness */
+        @media (max-width: 992px) {
+            .about-content {
+                flex-direction: column;
+            }
+            
+            .about-image {
+                order: -1;
+                max-width: 600px;
+                margin: 0 auto 30px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .hero {
+                padding: 100px 0;
+            }
+            
+            .hero h1 {
+                font-size: 36px;
+            }
+            
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .section-title {
+                font-size: 28px;
+            }
+            
+            .header-container {
+                flex-direction: column;
+            }
+            
+            nav ul {
+                margin-top: 20px;
+            }
+            
+            nav ul li {
+                margin: 0 10px;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .hero h1 {
+                font-size: 28px;
+            }
+            
+            .hero p {
+                font-size: 16px;
+            }
+            
+            .call-now {
+                font-size: 16px;
+            }
+            
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            nav ul li {
+                margin: 5px 10px;
+            }
+            
+            .btn {
+                padding: 10px 20px;
+                font-size: 14px;
+            }
+            
+            .logo img {
+                height: 40px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <!-- Using a placeholder logo since local paths won't work online -->
+                <img src="C:\Users\BACKSPACE\Desktop\premisecarhire\Saved Pictures\WhatsApp Image 2025-07-23 at 12.39.32_8366519f.jpg" alt="Premise Car Hire & Tours Logo">
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="home.html">Home</a></li>
+                    <li><a href="service.html">Services</a></li>
+                    <li><a href="fleet.html">Fleet</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>Premise Car Hire & Tours</h1>
+            <p>Experience luxury travel with our exclusive fleet and bespoke tour packages</p>
+            <div class="hero-buttons">
+                <a href="#" class="btn">Book a Car</a>
+                <a href="#" class="btn btn-accent">Explore Tours</a>
+            </div>
+            <div class="call-now">
+                <p>CALL US: <a href="tel:0762007565">076 200 7565</a></p>
+            </div>
+        </div>
+    </section>
+    
+    <!-- About Section -->
+    <section class="about">
+        <div class="container">
+            <h2 class="section-title">About Premise</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>Premise Car Hire & Tours is a luxury transportation service dedicated to providing exceptional vehicles and unforgettable travel experiences. Founded in 2017, we've grown to become a trusted name in premium mobility solutions.</p>
+                    <p>Our mission is to deliver unparalleled service, combining the finest vehicles with personalized attention to detail. Whether you need a luxury car for business or pleasure, or a guided tour of our beautiful region, we tailor every experience to your needs.</p>
+                    <p>All our vehicles are meticulously maintained and our drivers are professionally trained to ensure your complete satisfaction and safety.</p>
+                    <a href="#" class="btn">Learn More</a>
+                </div>
+                <div class="about-image">
+                    <!-- Using placeholder image since local paths won't work online -->
+                    <img src="C:\Users\BACKSPACE\Desktop\premisecarhire\Saved Pictures\IMG-20250721-WA0742.jpg" alt="Premise Luxury Cars">
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Services Section -->
+    <section class="services">
+        <div class="container">
+            <h2 class="section-title">Our Services</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">🚗</div>
+                    <h3>Luxury Car Hire</h3>
+                    <p>Choose from our premium fleet of luxury vehicles for any occasion, available for both short-term and long-term rentals.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">✈️</div>
+                    <h3>Airport Transfers</h3>
+                    <p>Arrive in style with our punctual and comfortable airport transfer service in premium vehicles.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🏞️</div>
+                    <h3>Guided Tours</h3>
+                    <p>Discover the region's hidden gems with our expert guides and luxury transportation.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Cars Section -->
+    <section class="cars">
+        <div class="container">
+            <h2 class="section-title">Our Premium Fleet</h2>
+            <div class="cars-grid">
+                <div class="car-card">
+                    <img src="C:\Users\BACKSPACE\Desktop\premisecarhire\Saved Pictures\IMG-20250721-WA0825.jpg" alt="Toyota Hilux" class="car-img">
+                    <div class="car-info">
+                        <h3>Toyota Hilux</h3>
+                        <div class="car-features">
+                            <span class="car-feature">Canopy</span>
+                            <span class="car-feature">5 Seats</span>
+                            <span class="car-feature">Automatic</span>
+                        </div>
+                        <p class="car-price">ZMW 3000/day</p>
+                        <a href="#" class="btn">Book Now</a>
+                    </div>
+                </div>
+                <div class="car-card">
+                    <img src="C:\Users\BACKSPACE\Desktop\premisecarhire\Saved Pictures\IMG-20250721-WA0734.jpg" alt="Toyota Fortuner" class="car-img">
+                    <div class="car-info">
+                        <h3>Toyota Fortuner</h3>
+                        <div class="car-features">
+                            <span class="car-feature">SUV</span>
+                            <span class="car-feature">7 Seats</span>
+                            <span class="car-feature">Manual</span>
+                        </div>
+                        <p class="car-price">ZMW 3000/day</p>
+                        <a href="#" class="btn">Book Now</a>
+                    </div>
+                </div>
+                <div class="car-card">
+                    <img src="C:\Users\BACKSPACE\Desktop\premisecarhire\Saved Pictures\IMG-20250721-WA0742.jpg" alt="Toyota Hilux" class="car-img">
+                    <div class="car-info">
+                        <h3>Toyota Hilux</h3>
+                        <div class="car-features">
+                            <span class="car-feature">Automatic</span>
+                            <span class="car-feature">5 Seats</span>
+                            <span class="car-feature">SUV</span>
+                        </div>
+                        <p class="car-price">ZMW 3000/day</p>
+                        <a href="#" class="btn">Book Now</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Testimonials Section -->
+    <section class="testimonials">
+        <div class="container">
+            <h2 class="section-title">Client Testimonials</h2>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"The service from Premise was exceptional. The car was immaculate and the driver was professional and courteous. Will definitely use them again for my next business trip."</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">JD</div>
+                        <div>
+                            <h4>John Doe</h4>
+                            <p>Business Executive</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"We booked a tour package for our anniversary and it was perfect! The guide was knowledgeable and the luxury SUV made the experience so comfortable. Highly recommended!"</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">SM</div>
+                        <div>
+                            <h4>Sarah Miller</h4>
+                            <p>Happy Customer</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"As a frequent traveler, I've used many car services but Premise stands out. Their attention to detail and reliability is unmatched. My go-to service for all my transportation needs."</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">RJ</div>
+                        <div>
+                            <h4>Robert Johnson</h4>
+                            <p>Frequent Traveler</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- CTA Section -->
+    <section class="cta">
+        <div class="container">
+            <h2>Ready for an Exceptional Experience?</h2>
+            <p>Contact us today to book your luxury vehicle or custom tour package. Our team is available 24/7 to assist with your inquiries.</p>
+            <a href="#" class="btn btn-accent">Contact Us</a>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Premise</h3>
+                    <p>Premise Car Hire & Tours offering luxury transportation and bespoke travel experiences.</p>
+                    <div class="social-links">
+                        <a href="#">f</a>
+                        <a href="#">in</a>
+                        <a href="#">ig</a>
+                        <a href="#">tw</a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="home.html">Home</a></li>
+                        <li><a href="service.html">Services</a></li>
+                        <li><a href="fleet.html">Fleet</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Contact Us</h3>
+                    <ul>
+                        <li>Plot 51 Mwaiseni New Road</li>
+                        <li>Kitwe, Zambia</li>
+                        <li>Phone: +260 762 007 565</li>
+                        <li>Email: premisecarhire@gmail.com</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 Premise Car Hire & Tours. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
